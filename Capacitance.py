@@ -9,13 +9,15 @@ timeSteps = int(maxTime/dt) - 1
 
 dx = .01/2 #how spaced out nodes are in battery
 
+numBranches = 5
+
 currentThroughBat = 70/3 #really how much current goes through each cell due to parallel setting
 batInternalResistance = .015
-numCellsPerBranch = 21 #By branch I mean cold plate branch. Also note this really has an effect on the water temperature, gets canceled out for other temp equations
+numCellsPerBranch = 560/numBranches #By branch I mean cold plate branch. Also note this really has an effect on the water temperature, gets canceled out for other temp equations
 q = numCellsPerBranch*batInternalResistance*currentThroughBat**2 #total power dissappated by batteries in the cold plate branch
 
 flowRateTotal = 16 #change as you like, LPM
-flowRateThroughBranch = flowRateTotal/4
+flowRateThroughBranch = flowRateTotal/numBranches
 totalArea = numCellsPerBranch * math.pi * ((.0186/2)**2)
 
 #FOR VARIABLES: b = battery, k = kapton, t = tim, a = aluminum
